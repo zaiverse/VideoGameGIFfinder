@@ -1,4 +1,4 @@
-emptyArr = ["Dark Souls","Hollow Knight", "Dead Space 3"];
+emptyArr = ["Dark Souls","Bioshock Infinite", "Dead Space 3"];
 
 function displayButtons(){
     for(i=0; i<emptyArr.length; i++){
@@ -12,12 +12,19 @@ function displayButtons(){
 
 displayButtons();
 
-$('#submit').on("click", function(){
+$('#submit').click(function(){
     $('#buttons').empty();
     var userinput = $('#userInput').val();
     emptyArr.push(userinput);
     displayButtons();
+    $('#userInput').val('');
 })
+
+$('#userInput').keypress(function(e){
+    if(e.which == 13){
+        $('#submit').click();
+    }
+});
 
 $(document).on("click", ".btun", function(){
     $('#GIFArea').empty();
@@ -34,12 +41,10 @@ $(document).on("click", ".btun", function(){
         var giffys = response.data;
         
         for(i=0; i< giffys.length; i++){
-            var gifDiv = $("<div>");
             var videoGameimg = $("<img>");
-
+            videoGameimg.addClass('imgFix');
             videoGameimg.attr("src", giffys[i].images.fixed_height.url);
-            gifDiv.append(videoGameimg);
-            $('#GIFArea').prepend(gifDiv);
+            $('#GIFArea').prepend(videoGameimg);
 
         }
       })

@@ -1,0 +1,45 @@
+body{
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h3{
+    text-align: center;
+    padding: 14px;
+    color: white;
+    background-color: black;
+}
+
+.container{
+    width: 100%;
+    margin-bottom: 80px;
+    float: left;
+}
+
+.imgFix{
+    padding-left: 10px;
+    padding-top: 10px;
+}
+
+#buttons{
+    width: 45%;
+    padding: 10px;
+    float: left;
+}
+
+#GIFArea{
+    float: left;
+}
+
+.btun{
+    margin: 6px;
+    background-color: black;
+    color: white;
+}
+.btun:hover{
+    background: darkgrey;
+}
+
+#submit{
+    background-color: darkred;
+    color: white;
+}
