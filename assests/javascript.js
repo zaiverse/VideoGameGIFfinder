@@ -1,5 +1,3 @@
-
-
 emptyArr = ["Dark Souls","Hollow Knight", "Dead Space 3"];
 
 function displayButtons(){
@@ -7,7 +5,7 @@ function displayButtons(){
         var button = $("<button>");
         button.text(emptyArr[i]);
         button.attr('data-person', emptyArr[i]);
-        button.addClass('btun')
+        button.addClass('btun');
         $('#buttons').append(button);
     }
 }
@@ -22,13 +20,28 @@ $('#submit').on("click", function(){
 })
 
 $(document).on("click", ".btun", function(){
-    console.log($(this).attr('data-person'))
+    $('#GIFArea').empty();
     var videoGame = $(this).attr('data-person');
-    var xhr = $.get("http://api.giphy.com/v1/gifs/search?q=" + videoGame + "&api_key=OLOUg6HHWUJk6R6lEAMsFkr94NDGwKD1&limit=10");
+    var queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+    videoGame + "&api_key=OLOUg6HHWUJk6R6lEAMsFkr94NDGwKD1&limit=10";
 
-    xhr.done(function(response) { 
-        console.log(response);
-        var img = $('<img>');
-        img.attr('src', )
-    });
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+      })
+      .then(function(response) {
+        console.log(response.data)
+        var giffys = response.data;
+        
+        for(i=0; i< giffys.length; i++){
+            var gifDiv = $("<div>");
+            var videoGameimg = $("<img>");
+
+            videoGameimg.attr("src", giffys[i].images.fixed_height.url);
+            gifDiv.append(videoGameimg);
+            $('#GIFArea').prepend(gifDiv);
+
+        }
+      })
+    
 })
