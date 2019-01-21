@@ -39,13 +39,20 @@ $(document).on("click", ".btun", function(){
       .then(function(response) {
         console.log(response.data)
         var giffys = response.data;
-        
-        for(i=0; i< giffys.length; i++){
-            var videoGameimg = $("<img>");
-            videoGameimg.addClass('imgFix');
-            videoGameimg.attr("src", giffys[i].images.fixed_height.url);
-            $('#GIFArea').prepend(videoGameimg);
 
+        for(i=0; i< giffys.length; i++){
+            if (giffys[i].rating !== "r" && giffys[i].rating !== "pg-13") {
+                var rating = giffys[i].rating;
+                var gifDiv = $("<div>");
+                var videoGameimg = $("<img>");
+                var ratingP = $("<p>").text("Rating: " + rating);
+                gifDiv.addClass('gifydiv')
+                videoGameimg.addClass('imgFix');
+                videoGameimg.attr("src", giffys[i].images.fixed_height.url);
+                gifDiv.append(ratingP);
+                gifDiv.append(videoGameimg);
+                $('#GIFArea').prepend(gifDiv);
+            }
         }
       })
     
