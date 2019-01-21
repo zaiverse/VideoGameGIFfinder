@@ -55,5 +55,4 @@ $(document).on("click", ".btun", function(){
             }
         }
       })
-    
 })
